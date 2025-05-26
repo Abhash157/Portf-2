@@ -32,9 +32,8 @@ qs(".container").addEventListener("click", () => {
          else {
             circleExpand();
          }  
-      } else {
+      } else 
          circleShrink();
-      }
    }
 
    // SHOW IMAGE
@@ -46,7 +45,7 @@ qs(".container").addEventListener("click", () => {
 function circleExpand() {
    // const el = event.target
    for (i = 1; i <= 4; i++) {
-      circles[i - 1].style.width = i * i * 50 + 100 + "px";
+      circles[i - 1].style.width = i * i * 50 + 100 + "px"; //100 + (0,1,4,9)th of original size
    }
    cirExpanded = true;
 }
@@ -71,14 +70,15 @@ function circleShrink() {
       circle.style.transitionDelay = "0ms";
       circle.style.width = "100px";
    }
-   setTimeout(delayReset, 100);
-   welcomeHeading.style.transform = "translateX(-150%)";
-   welcomeText.style.transform = "translateX(-150%)";
+   setTimeout(delayReset, 100); // Change transition delay of circles to --del
+   welcomeHeading.style.transform = "translateX(-100vw)";
+   welcomeText.style.transform = "translateX(-100vw)";
    continueBtn.innerHTML = "";
    continueBtn.style.background =
       "linear-gradient(45deg, transparent 5%, #1694f290 5%, #1694F250 30%, #025CED50 70%, #025ced90 95%, transparent 95%)";
    cirExpanded = true;
    continued = true;
+   
    continueBtn.addEventListener("mouseout", circleExpand);
 }
 
@@ -96,6 +96,7 @@ function cirContinue() {
       circleBox.style.transform = "translateX(-50vw)";
    }
    continued = false;
+   // Show Click Prompt after 1 second
    clickPrompt.style.display= 'block'
    setTimeout(()=>{
       clickPrompt.style.animation= 'twinkle 1s alternate ease-in-out infinite'
@@ -106,8 +107,8 @@ function cirContinue() {
 function introScreen() {
    for (i = 0; i < 4; i++) {
       circles[i].style.transitionDuration = "1000ms";
-      circles[i].style.transitionDelay = "0ms";
-      circles[i].style.width = "150vw";
+      circles[i].style.transitionDelay = "var(--del3)";
+      circles[i].style.width = "180vw";
       circles[i].style.opacity = "0";
    }
    imgTurn = false
